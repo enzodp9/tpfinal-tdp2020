@@ -1,0 +1,14 @@
+@host = http://localhost:5080
+
+### Probar OMDb por nuestro endpoint debug
+GET {{host}}/api/debug/omdb?q=Inception
+Accept: application/json
+
+### (opcional) Probar login fake para emitir un JWT
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}

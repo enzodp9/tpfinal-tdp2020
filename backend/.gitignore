@@ -1,0 +1,11 @@
+# Build
+bin/
+obj/
+*.dll
+*.exe
+
+# Migrations
+Migrations/
+
+# Env
+.env

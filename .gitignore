@@ -1,0 +1,16 @@
+# Global ignores
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Env files
+*.env
+
+# System
+.DS_Store
+Thumbs.db

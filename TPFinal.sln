@@ -1,0 +1,28 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EF}") = "TPFinal.Api", "backend\TPFinal.Api\TPFinal.Api.csproj", "{9975FBC8-0949-15BB-F077-3CFC067C4CEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9975FBC8-0949-15BB-F077-3CFC067C4CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9975FBC8-0949-15BB-F077-3CFC067C4CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9975FBC8-0949-15BB-F077-3CFC067C4CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9975FBC8-0949-15BB-F077-3CFC067C4CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C39D25D3-BE2A-346B-45EF-B118555ED6A9} = {06DF1094-0FEF-0BCB-4982-E39C3E0B5602}
+		{9975FBC8-0949-15BB-F077-3CFC067C4CEC} = {C39D25D3-BE2A-346B-45EF-B118555ED6A9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02277691-606C-4A47-82AF-894965101A86}
+	EndGlobalSection
+EndGlobal
