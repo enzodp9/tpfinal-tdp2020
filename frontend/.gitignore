@@ -1,16 +1,24 @@
-# Global ignores
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# IDE
-.vscode/
-.idea/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
+node_modules
+dist
+dist-ssr
+*.local
 
-# Env files
-*.env
-
-# System
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

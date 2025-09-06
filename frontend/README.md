@@ -19,11 +19,11 @@ Cliente web para autenticación, búsqueda de películas, detalle, watchlist y a
 1. Instalar dependencias:
 
    ```bash
-   cd client
+   cd frontend
    npm install
    ```
 
-2. Variables de entorno (crear `client/.env` si no existe):
+2. Variables de entorno (crear `frontend/.env` si no existe):
 
    ```env
    VITE_API_URL=http://localhost:5080/api
@@ -34,19 +34,6 @@ Cliente web para autenticación, búsqueda de películas, detalle, watchlist y a
    ```bash
    npm run dev
    # abre http://localhost:5173
-   ```
-
-4. Build y preview:
-
-   ```bash
-   npm run build
-   npm run preview
-   ```
-
-5. Lint:
-
-   ```bash
-   npm run lint
    ```
 
 ## Rutas principales
@@ -60,7 +47,7 @@ Cliente web para autenticación, búsqueda de películas, detalle, watchlist y a
 ## Autenticación
 
 - Tras el login, el token JWT se guarda en `localStorage` como `token`.
-- `client/src/lib/axios.ts` agrega automáticamente `Authorization: Bearer <token>`.
+- `frontend/src/lib/axios.ts` agrega automáticamente `Authorization: Bearer <token>`.
 - En respuesta `401`, se limpia el token y se redirige a `/login`.
 
 ## Integración con el Backend

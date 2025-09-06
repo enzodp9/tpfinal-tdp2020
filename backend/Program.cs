@@ -13,10 +13,9 @@ Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-// -------------------- Services --------------------
 builder.Services.AddControllers();
 
-// Swagger (Swashbuckle)
+// Swagger 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -27,8 +26,7 @@ builder.Services.AddSwaggerGen(c =>
         Description = "API para gestión de películas/series"
     });
 
-    // (Opcional) Soporte de autorización por JWT en Swagger
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme     // Soporte de autorización por JWT en Swagger
     {
         Description = "JWT Bearer. Usar: Bearer {token}",
         Name = "Authorization",
@@ -72,7 +70,7 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
-// HttpClient para OMDb
+// Servicios
 builder.Services.AddHttpClient<IOmdbClient, OmdbClient>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
@@ -81,7 +79,7 @@ builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 
-// (Opcional) CORS para tu front en Vite (5173)
+// CORS para el front en Vite (5173)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("client", p =>
@@ -102,16 +100,11 @@ builder.Services.AddDbContext<AppDbContext>(opts =>
 var app = builder.Build();
 app.UseStaticFiles(); // sirve wwwroot/*
 
-// -------------------- Pipeline --------------------
-// Swagger siempre en dev; si querés, podés condicionarlo por entorno
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "TPFinal API v1");
 });
-
-// Si no configuraste https en launchSettings, podés omitir esto para evitar warnings.
-// app.UseHttpsRedirection();
 
 app.UseCors("client");
 

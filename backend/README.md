@@ -8,7 +8,7 @@ API para autenticación de usuarios, catálogo de películas/series, ratings y w
 - Entity Framework Core
 - SQLite (por defecto) / SQL Server (opcional)
 - JWT Bearer Auth
-- Swagger (Swashbuckle)
+- Swagger
 
 ## Requisitos
 
@@ -17,9 +17,9 @@ API para autenticación de usuarios, catálogo de películas/series, ratings y w
 
 ## Configuración
 
-Las variables de entorno se cargan con DotNetEnv desde un archivo `.env` en `TPFinal.Api`.
+Las variables de entorno se cargan con DotNetEnv desde un archivo `.env` en la raíz de `backend/`.
 
-Ejemplo (`tdp-tpfinal/server/TPFinal.Api/.env`):
+Ejemplo (`backend/.env`):
 
 ```
 CONNECTIONSTRINGS__DEFAULT=Data Source=./data/tppelis.db
@@ -30,13 +30,14 @@ OMDB__APIKEY=<tu_api_key_omdb>
 OMDB__BASEURL=https://www.omdbapi.com/
 ```
 
-- CORS: por defecto se permite `http://localhost:5173` (Vite). Se puede ajustar en `Program.cs` (política `client`).
+- CORS: por defecto se permite `http://localhost:5173` (Vite). Se puede ajustar en `Program.cs`.
 
 ## Ejecución (desarrollo)
 
 ```
-cd tdp-tpfinal/server/TPFinal.Api
+cd backend
 dotnet restore
+dotnet build
 dotnet run
 ```
 
@@ -44,8 +45,6 @@ dotnet run
 - API base: `http://localhost:5080/api`
 - Swagger: `http://localhost:5080/swagger`
 - Ping rápido: `http://localhost:5080/ping`
-
-> El perfil de `launchSettings.json` expone `http://localhost:5080` en Development.
 
 ## Base de datos
 
@@ -78,6 +77,12 @@ Usar SQL Server (opcional):
   - `GET /{imdbId}` — detalle por IMDb ID
   - `GET /search?imdbId=&title=&genre=&type=` — busca; si no existen localmente, trae de OMDb y persiste
 
+- Ratings (`/api/ratings`, requiere JWT para crear/editar/borrar):
+  - `POST /` — body: `ImdbId`, `Qualification (1..5)`, `Comment?` — crea/actualiza mi calificación
+  - `DELETE /{imdbId}` — borra **mi** calificación
+  - `GET /movie/{imdbId}` — lista calificaciones (orden desc. por fecha)
+  - `GET /movie/{imdbId}/summary` — resumen `{ count, average }` (o `null` si no existe la película)
+
 - Watchlist (`/api/watchlist`, requiere JWT):
   - `GET /` — mi lista
   - `POST /` — body: `ImdbId`, `Position?`
@@ -88,10 +93,10 @@ Usar SQL Server (opcional):
   - `GET /` (listar con `?q=`), `GET /{id}`
   - `POST /` (upsert), `DELETE /{id}`
   - `POST /{id}/password`
-  - Perfil: `GET /me`, `PATCH /me`, `POST /me/avatar` (multipart/form-data)
+  - Perfil: `GET /me`, `PATCH /me`, `POST /me/avatar` (multipart/form-data), `GET /me/summary`
+
 
 ## Integración con el Frontend
 
 - El cliente consume `VITE_API_URL` (por defecto `http://localhost:5080/api`).
-- Ver `client/.env` y `client/src/lib/axios.ts` para configuración de baseURL y manejo de tokens.
-
+- Ver `frontend/.env` y `frontend/src/lib/axios.ts` para configuración de baseURL y manejo de tokens.
